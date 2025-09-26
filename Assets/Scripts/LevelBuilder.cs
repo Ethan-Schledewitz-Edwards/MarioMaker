@@ -14,7 +14,10 @@ public class LevelBuilder : MonoBehaviour
 
 	// Canvas
 	[SerializeField] private GameObject Holder;
-	[SerializeField] private Vector2Int GridSize = new Vector2Int(8, 8);
+	[SerializeField] private GameObject UndoButton;
+	[SerializeField] private GameObject SaveButton;
+
+	private Vector2Int GridSize = new Vector2Int(8, 8);
 
 	// System vars
 	private string filePath;
@@ -49,6 +52,18 @@ public class LevelBuilder : MonoBehaviour
 		Debug.Log(filePath);
 
 		LoadData();
+
+		// Subscribe to button Undo changes
+		Invoker.OnCommandExecuted += UpdateUndo;
+		Invoker.OnCommandUndo += UpdateUndo;
+
+		UndoButton.SetActive(false);
+	}
+
+	private void OnDestroy()
+	{
+		Invoker.OnCommandExecuted -= UpdateUndo;
+		Invoker.OnCommandUndo -= UpdateUndo;
 	}
 	#endregion
 
@@ -99,5 +114,10 @@ public class LevelBuilder : MonoBehaviour
 	public void TryUndo()
 	{
 		Invoker.UndoPrevCommand();
+	}
+
+	public void UpdateUndo()
+	{
+		UndoButton.SetActive(Invoker.RecordedComands.Count > 0);
 	}
 }
