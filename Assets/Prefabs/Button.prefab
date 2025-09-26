@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 6119105362795139175}
   - component: {fileID: 3570922311834023193}
   - component: {fileID: 4821549187742376418}
+  - component: {fileID: 2421802569109190571}
   - component: {fileID: 616455858541830563}
   m_Layer: 5
   m_Name: Button
@@ -213,6 +214,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2421802569109190571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169140159629512065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b617b5d6b6325841ad664b95eb40103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCell
+  binaryText: {fileID: 3546796555430551113}
 --- !u!114 &616455858541830563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,4 +270,16 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4821549187742376418}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2421802569109190571}
+        m_TargetAssemblyTypeName: GridCell, Assembly-CSharp
+        m_MethodName: PressButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
