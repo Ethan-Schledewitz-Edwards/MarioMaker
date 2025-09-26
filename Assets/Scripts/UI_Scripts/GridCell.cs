@@ -5,7 +5,14 @@ public class GridCell : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI binaryText;
 
+	TickCommand tickCommand;
+
 	public bool IsTicked { get ; private set; }
+
+	private void Awake()
+	{
+		tickCommand = new TickCommand(this);
+	}
 
 	public void SetTicked(bool isTicked)
 	{
@@ -23,9 +30,11 @@ public class GridCell : MonoBehaviour
 		binaryText.text = text;
 	}
 
+	/// <summary>
+	/// Executes the tick command on press
+	/// </summary>
 	public void PressButton()
 	{
-		IsTicked = !IsTicked;
-		SetText(IsTicked);
+		LevelBuilder.Instance.Invoker.ExecuteCommand(tickCommand);
 	}
 }

@@ -7,8 +7,7 @@ public class LevelBuilder : MonoBehaviour
 	// Singleton
 	public static LevelBuilder Instance;
 
-	// Save path
-	private string filePath;
+	public Invoker Invoker { get; private set; } = new Invoker();
 
 	// Prefab
 	[SerializeField] private GridCell gridCellPrefab;
@@ -18,7 +17,10 @@ public class LevelBuilder : MonoBehaviour
 	[SerializeField] private Vector2Int GridSize = new Vector2Int(8, 8);
 
 	// System vars
+	private string filePath;
 	private GridCell[] gridCells;
+
+	#region Initialization
 
 	public void Awake()
 	{
@@ -48,6 +50,7 @@ public class LevelBuilder : MonoBehaviour
 
 		LoadData();
 	}
+	#endregion
 
 	/// <summary>
 	/// Saves all tile data to a txt file in the build folder
@@ -91,5 +94,10 @@ public class LevelBuilder : MonoBehaviour
 		{
 			Debug.Log("No save file found at " + filePath);
 		}
+	}
+
+	public void TryUndo()
+	{
+		Invoker.UndoPrevCommand();
 	}
 }
